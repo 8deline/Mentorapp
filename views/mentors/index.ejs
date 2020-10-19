@@ -10,7 +10,7 @@
 <p>Connect with out mentors</p>
 
 <%mentordata.forEach(mentor=>{%>
-<h2><%=mentor.name%></h2>
+<h2><a href="/mentors/<%=mentor.slug%>"><%=mentor.firstname%> <%=mentor.lastname%></a></h2>
 <h3><%= mentor.designation%> at <%= mentor.company %>  </h3>
 <small><%=mentor.yearsOfExperience%> years of experience</small>
 
