@@ -1,0 +1,27 @@
+<%- include ('../partials/header') %>
+
+<p>Search by categories</p>
+
+<section>Mentorships with Mentorapp.
+    <br>
+    Creating opportuntities to share stories and build meaningful connections for your career progression.
+</section>
+
+<p>Connect with out mentors</p>
+
+<%mentordata.forEach(mentor=>{%>
+<h2><%=mentor.name%></h2>
+<h3><%= mentor.designation%> at <%= mentor.company %>  </h3>
+<small><%=mentor.yearsOfExperience%> years of experience</small>
+
+<ul>
+    <% mentor.interests.forEach(interest=>{%>
+        <li><%=interest%></li>
+    <%})%>
+</ul>
+
+<%})%>
+
+
+
+<%- include ('../partials/footer') %>
