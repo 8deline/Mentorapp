@@ -1,27 +1,23 @@
-module.exports= [
-    {firstname: "Mentor", lastname: "McMentor", userid:"mentoree", email:"mentor@mentoray.com", slug: "mentor-mentoree", profilePic:"", designation: "Senior UX Designer", company: "Mentoray", industry: "UIUX", interests:["UI", "Design", "Research"], yearsOfExperience: 6, 
-    intention: ["One-on-one mentoring", "Long-term career guidance", "Discussion of social issues", "Interview tips", "Informational interviews"],
-    description: "I’m a Senior UX Designer and I love my job—but I didn’t always know what direction I wanted to take in my career. I started out in communications. After a lot of trial and error, I found UI/UX. I want to give back by sharing my experiences, painful mistakes etc. with those starting out a new career"
-      },
+const mongoose = require ('mongoose')
 
-    {firstname: "Timothee", lastname: "Chalamet", userid:"funboy", email:"timothee.chamlamet@outlook.com", slug:"timothee-funboy", profilePic:"", designation: "UI Engineer", company: "Google", industry: "UIUX", interests:["UI", "Software development"], yearsOfExperience: 3, 
-    intention: ["One-on-one mentoring", "Interview tips", "Building your resume"],
-    description: "I'm a UI Engineer at Google. I love meeting new friends, discuss ideas and share my personal journey on how I got to where I am today in my career. Hit me up if you are curious to know more."
-    },
+const mentorSchema = new mongoose.Schema({
+  firstname: {type: String, required: true},
+  lastname: {type: String, required: true},
+  img: String,
+  userid: {type: String, required: true},
+  email: {type: String, required: true},
+  slug: {type: String, required: true},
+  designation: {type: String, required: true},
+  company: {type: String, required: true},
+  industry: {type: String, required: true},
+  interests: [{type: String, required: true}],
+  yearsOfExperience : {type: Number, required: true},
+  intention: [{type: String, reuired: true}],
+  description: {type: String, reuired: true}
+}
+)
 
-    {firstname: "Roberto", lastname: "Pirelli", userid:"italianboy", email:"roberto.pirelli@outlook.com", slug:"roberto-italianboy", profilePic:"", designation: "UIUX Desginer", company: "Artsy", industry: "UIUX", interests:["UI", "Design", "Front-end"], yearsOfExperience: 5, 
-    intention: ["Mentoring"],
-    description: "Few years ago, I was working at a fast-food chain flippin burgers and was in a band with my brothers and his friends. I took up graphic design to design the marketing resources for our band. Eventually, I dabbled in coding and soon, the rest is history. Check out my youtube channel - UIRoberto"
-    },
+const mentorModel = mongoose.model('Mentor', mentorSchema)
 
-    {firstname: "Alfian", lastname: "Dimas", userid:"Dimas88", email:"alfian.dimas@outlook.com", slug:"alfian-dimas88", profilePic:"", designation: "UX Lead", company: "Twitter", industry: "UIUX", interests:["UX"], yearsOfExperience: 5, 
-    intention: ["Networking skills", "Interview tips"],
-    description: "Obtained my bachelor degree in psychology in Stanford University, before working in Silicon Valley for a year, and currently building a career in design consulting in sunny Singapore."
-    },
+module.exports = mentorModel
 
-    {firstname: "Helen", lastname: "Ngyuen", userid:"hnn87", email:"helen.ngyuen@outlook.com", slug:"helen-hnn87", profilePic:"", designation: "Front-end engineer", company: "Facebook", industry: "UIUX", interests:["UI", "Front-end"], yearsOfExperience: 8, 
-    intention: ["Networking skills", "Interview tips"],
-    description: "Passionte about user research/ user interface, data science and automation"
-    },
-
-]

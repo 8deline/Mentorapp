@@ -1,5 +1,7 @@
 <%- include ('../partials/header') %>
 
+<img class="profile-pic" src="<%=currentmentordata.img%>">
+
 <h1><%=currentmentordata.firstname%> <%=currentmentordata.lastname%></h1>
 <p><%=currentmentordata.designation%> at <%=currentmentordata.company%></p>
 <p><%=currentmentordata.yearsOfExperience%> years of experience in <%=currentmentordata.industry%> industry</p>
@@ -12,6 +14,8 @@
 
     <%})%>
 </ul>
+
+<p><%=currentmentordata.description%></p>
 
 <button type="button" class="btn btn-success">Ask me to mentor</button>
 

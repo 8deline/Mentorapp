@@ -1,20 +1,27 @@
 const mentormodel = require('../models/mentormodel')
 
+
 const mentorscontroller = {
     allMentors: (req,res)=>{
-        res.render('mentors/index', {
-            mentordata: mentormodel
+        mentormodel.find()
+        .then(result=>{
+            res.render('mentors/index', {
+            mentordata: result
+            })
         })
+        
     },
 
     showMentors: (req, res)=>{
         let currentmentorslug = req.params.slug
-        let currentmentor = mentormodel.find(mentor=>{
-            return mentor.slug === currentmentorslug
+        mentormodel.findOne({slug: currentmentorslug})
+        .then(result=>{
+            res.render('mentors/show',{
+                currentmentordata: result
+            })
         })
-        res.render('mentors/show',{
-            currentmentordata: currentmentor
-        })
+        .catch(err=> console.log(err))
+        
         // console.log(currentmentor)
     }
 }

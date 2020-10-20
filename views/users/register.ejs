@@ -1,0 +1,75 @@
+<%- include ('../partials/header') %>
+<div class="container">
+<form method="POST" action="/user/register">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstname">First name <small class="form-text text-muted">Required</small></label>
+          <input type="text" class="form-control" id="firstname" name="firstname" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastname">Last name <small class="form-text text-muted">Required</small></label>
+          <input type="text" class="form-control" id="lastname" name="lastname" required>
+        </div>
+      </div>
+    
+    <div class="form-group">
+        <label for="img">Profile image URL</label>
+        <input type="text" class="form-control" id="img" name="img">
+      </div>  
+    
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="userid">Username<small class="form-text text-muted">Required</small></label>
+            <input type="text" class="form-control" id="userid" name="userid" required>
+        <% if (username){%>
+          <small class="form-text text-muted">Username already exists</small>
+        <%}%>
+          </div>
+      <div class="form-group col-md-4">
+        <label for="email">Email<small class="form-text text-muted">Required</small></label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="password">Password<small class="form-text text-muted">Required</small></label>
+        <input type="password" class="form-control" id="password" name="password" required  >
+      </div>
+    </div>
+    <!-- <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+    </div> -->
+    <!-- <div class="form-group"> 
+              <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+    </div> -->
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+
+</div>
+
+<%- include ('../partials/footer') %>
