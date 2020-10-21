@@ -3,7 +3,7 @@ const mentormodel = require('../models/mentormodel')
 
 const mentorscontroller = {
     allMentors: (req,res)=>{
-        mentormodel.find()
+        mentormodel.find({}).sort({yearsOfExperience: -1})
         .then(result=>{
             res.render('mentors/index', {
             mentordata: result

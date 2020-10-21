@@ -5,10 +5,12 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const mentorscontroller = require('./controllers/mentorscontroller')
 const userscontroller=require('./controllers/userscontroller')
+const _ = require('lodash')
 
 //connection string of mongoose
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
 mongoose.set('useFindAndModify', false)
+
 
 
 app.set('view engine','ejs')
@@ -26,13 +28,13 @@ app.get('/mentors/:slug', mentorscontroller.showMentors)
 
 
 //user register form
-//app.get('/user/register', userscontroller.showRegistrationForm)
+app.get('/user/register', userscontroller.showRegistrationForm)
 
 //user register
-//app.post('/user/register', userscontroller.register)
+app.post('/user/register', userscontroller.register)
 
 //user login form
-//app.get('/user/login', userscontroller.showLoginForm)
+app.get('/user/login', userscontroller.showLoginForm)
 
 //user login
 //app.post('/user/login', userscontroller.login)

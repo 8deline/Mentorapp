@@ -18,22 +18,24 @@
       </div>  
     
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="userid">Username<small class="form-text text-muted">Required</small></label>
             <input type="text" class="form-control" id="userid" name="userid" required>
-        <% if (username){%>
-          <small class="form-text text-muted">Username already exists</small>
-        <%}%>
           </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-3">
         <label for="email">Email<small class="form-text text-muted">Required</small></label>
         <input type="email" class="form-control" id="email" name="email" required>
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-3">
         <label for="password">Password<small class="form-text text-muted">Required</small></label>
         <input type="password" class="form-control" id="password" name="password" required  >
       </div>
+    
+    <div class="form-group col-md-3">
+      <label for="password2">Password<small class="form-text text-muted">Required Confirm password</small></label>
+      <input type="password" class="form-control" id="password2" name="password2" required  >
     </div>
+  </div>
     <!-- <div class="form-group">
       <label for="inputAddress">Address</label>
       <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
@@ -66,8 +68,7 @@
           Check me out
         </label>
     </div> -->
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary test">Register</button>
   </form>
 
 </div>

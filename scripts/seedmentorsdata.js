@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 const mentorModel = require('../models/mentormodel')
 require('dotenv').config()
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
-console.log(process.env)
-console.log(process.env)
+
 
 mongoose.connect( mongoURI, { useNewUrlParser: true, useUnifiedTopology: true } )
 .then(result =>{

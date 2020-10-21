@@ -1,58 +1,66 @@
 const uuid = require('uuid')
 const SHA256 = require('crypto-js/sha256')
+const _ = require('lodash')
+const userModel = require('../models/usermodel')
+
+
 
 const userscontroller = {
     showRegistrationForm: (req, res)=>{
+        // if found in DB, means email has already been take, redirect to registration page
         res.render('users/register')
     },
+    
     register: (req,res)=>{
-        let firstname = req.body.firstname
+        //res.send('register post route')},
+        let firstname = req.body.firstname 
         let lastname = req.body.lastname
         let img = req.body.img
-        let username = req.body.username
+        let username = req.body.userid
         let email = req.body.email
         let password = req.body.password
         
         //check that the username does not exist..if exist notify the user that the username has exist 
-        userModel.findOne({ username: username})
+        userModel.findOne({username: username})
         .then(result=>{
             if (result) {
-                res.render('users/register',{
-                    username: result.username  
-                  })
+                res.redirect('/user/register')
                 return
             }
-
             userModel.findOne({email: email})
             .then (newresult=>{
                 if (newresult) {
                     res.redirect('/user/login')
                     return
                 }
-                salt = uuid.v4() 
+                
+               
+                let salt = uuid.v4() 
                 //add salt to uuid
                 let combination = salt + password
                 //has the combination
                 let hash = SHA256(combination).toString()
 
-                userModel.create({
+                 userModel.create({
                     firstname: firstname,
                     lastname: lastname,
                     img: img,
-                    username: username,
+                    userid: username,
+                    slug: _.kebabCase(firstname + '_'+ username),
                     email: email,
                     pwsalt: salt,
                     hashpw: hash,
-                    mentors:[]
+                    mentors: []
                 })
-                .then (newentry=>{
-                    res.redirect('/mentors')
-                })
-                .catch (err=>{
-                    res.redirect('/user/register')
-                })
+                 .then (newentry=>{
+                     res.redirect('/mentors')
+                 })
+                 .catch (err=>{
+                     console.log(err)
+                     res.redirect('/user/register')
+                 })
 
-            })
+            }).catch( errfindone => {console.log(errfindone)})
             
         })
         .catch (err=> console.log(err))
@@ -67,11 +75,11 @@ const userscontroller = {
         res.render('users/login')
     },
 
-    login: (req, res)=>{
+   // login: (req, res)=>{
         //check if username is in the database
         //check if password match the password of the yser name
         //re
-    }
+    //}
 }
 
 module.exports = userscontroller;
