@@ -1,0 +1,45 @@
+<%- include ('../partials/header') %>
+<div class="container">
+
+<img src="<%=currentuserprofile.img%>" class="profile-pic">
+
+<form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/edit?_method=PATCH"/edit">
+    <div class="form-group">
+        <label for="firstname">First name</label>
+        <input type="text" class="form-control" id="firstname" value="<%=currentuserprofile.firstname%>" name="firstname">
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input type="text" class="form-control" id="lastname" value="<%=currentuserprofile.lastname%>" name="lastname">
+      </div>
+
+      <div class="form-group">
+        <label for="img">Change profile image link</label>
+        <input type="text" class="form-control" id="img" value="<%=currentuserprofile.img%>" name="img">
+      </div>
+
+      <div class="form-group">
+        <label for="userid">Username</label>
+        <input type="text" class="form-control" id="userid'" value="<%=currentuserprofile.userid%>" name="userid">
+      </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" value="<%=currentuserprofile.email%>" name="email">
+    </div>
+   
+   
+    <div class="form-group">
+      <label for="description">Bio</label>
+    <textarea class="form-control" id="description" rows="3" name="description"> <%if (currentuserprofile.description) {%> <%=currentuserprofile.descriiption%> <%}%></textarea> 
+    </div>
+
+    <button type="submit" class="btn btn-primary">Edit profile</button>
+
+  </form>
+
+</div>
+
+<%- include ('../partials/footer') %>
+

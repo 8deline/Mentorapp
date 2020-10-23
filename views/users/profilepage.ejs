@@ -1,0 +1,15 @@
+<%- include ('../partials/header') %>
+
+<img src="<%=currentuserprofile.img%>" class="profile-pic">
+
+<h1><%=currentuserprofile.firstname%></h1>
+
+<h1><%=currentuserprofile.lastname%></h1>
+
+<%if (currentuserprofile.description){%>
+    <p><%=currentuserprofile.description%></p>
+<%}%>
+
+<a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a>
+
+<%- include ('../partials/footer') %>

@@ -1,6 +1,11 @@
+
+
 let password = document.getElementById('password')
 let password2 = document.getElementById('password2')
 let registerbutton =document.querySelector('.test')
+
+
+
 
 
 registerbutton.addEventListener('click', (e)=>{
@@ -10,3 +15,4 @@ registerbutton.addEventListener('click', (e)=>{
         e.preventDefault();
     }
 } )
+

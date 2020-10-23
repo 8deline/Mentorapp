@@ -11,8 +11,8 @@
 
 <%mentordata.forEach(mentor=>{%>
 
-<a href="/mentors/<%=mentor.slug%>"><img class="profile-pic" src="<%=mentor.img%>"></a>   
-<h2><a href="/mentors/<%=mentor.slug%>"><%=mentor.firstname%> <%=mentor.lastname%></a></h2>
+<a href="/mentorapp/mentors/<%=mentor.slug%>"><img class="profile-pic" src="<%=mentor.img%>"></a>   
+<h2><a href="/mentorapp/mentors/<%=mentor.slug%>"><%=mentor.firstname%> <%=mentor.lastname%></a></h2>
 <h3><%= mentor.designation%> at <%= mentor.company %>  </h3>
 <small><%=mentor.yearsOfExperience%> years of experience</small>
 
