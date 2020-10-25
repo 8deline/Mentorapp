@@ -53,7 +53,7 @@ const userscontroller = {
                     mentors: []
                 })
                  .then (newentry=>{
-                     res.redirect('/mentorapp/mentors')
+                     res.redirect('/mentorapp')
                  })
                  .catch (err=>{ 
                      console.log(err)
@@ -77,14 +77,14 @@ const userscontroller = {
         let email= req.body.email
         let password = req.body.password
         if(email === "" || email === undefined || password===""|| password === undefined){
-            res.redirect('/user/login')
+            res.redirect('/mentorapp/user/login')
             console.log('first stage')
             return
         }
         userModel.findOne({email: email})
         .then(result=>{
             if (!result) {
-                res.redirect('/user/login')
+                res.redirect('/mentorapp/user/login')
                 console.log('no such user exist')
                 return
         }
@@ -143,7 +143,52 @@ const userscontroller = {
 
     },
     edit: (req, res)=>{
-        res.send('update route is working')
+        let currentuser = req.params.slug
+        let newslug = _.kebabCase(req.body.firstname+ "_"+ req.body.userid)
+        userModel.findOneAndUpdate({slug: currentuser},
+            {firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                img: req.body.img,
+                userid: req.body.userid,
+                slug: _.kebabCase(req.body.firstname + '_'+ req.body.userid),
+                email: req.body.email,
+                description: req.body.description
+            },
+            {new: true}
+        )
+             .then(updatedresult=> {
+                  req.session.user = updatedresult
+                res.redirect('/mentorapp/user/'+ newslug)
+             })
+            .catch(err=>{ 
+                console.log(err)
+                res.redirect('/mentorapp/user/'+ currentuser)})
+
+        // .catch(err=>{
+        //     console.log(err)
+        //     //redirect back to user profile page
+        //     res.redirect('/mentorapp/user/' + currentuser)})  
+        
+    },
+
+    deleteAccount: (req, res)=>{
+        let currentuser = req.params.slug
+        userModel.findOneAndDelete(
+            {slug: currentuser}
+        )
+        .then(deletedresult=>{
+            if (!deletedresult){
+                res.redirect('/mentorapp/mentors')
+                return
+            }
+            req.session.destroy()
+            res.render('users/delete')
+        })
+        .catch(err=> {
+            console.log(err)
+            res.redirect('/mentorapp/mentors')
+        })
+
     }
 }
 

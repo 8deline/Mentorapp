@@ -12,4 +12,11 @@
 
 <a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a>
 
+
+<!-- delete route -->
+<form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/delete?_method=DELETE">
+    <button type="submit" class="btn btn-primary">Delete account</button>
+</form>
+<!-- -->
+
 <%- include ('../partials/footer') %>

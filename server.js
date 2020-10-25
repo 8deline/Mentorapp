@@ -70,6 +70,9 @@ app.get('/mentorapp/user/:slug/edit', currentuserMiddleware, userscontroller.edi
 //edit user profile
 app.patch('/mentorapp/user/:slug/edit', currentuserMiddleware, userscontroller.edit )
 
+//delete user profile
+app.delete('/mentorapp/user/:slug/delete', currentuserMiddleware, userscontroller.deleteAccount)
+
 //miscellaneous
 app.get('/updateuserschema', adhocusercontroller.addimage)
 
