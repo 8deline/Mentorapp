@@ -10,6 +10,11 @@
     <p><%=currentuserprofile.description%></p>
 <%}%>
 
+<p><%=currentuserprofile.mentors.length%>  mentors</p>
+
+<h1>Following</h1>
+<a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/following" role="button">Following</a>
+
 <a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a>
 
 
@@ -20,3 +25,6 @@
 <!-- -->
 
 <%- include ('../partials/footer') %>
+
+</body>
+</html>

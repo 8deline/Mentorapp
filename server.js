@@ -73,6 +73,12 @@ app.patch('/mentorapp/user/:slug/edit', currentuserMiddleware, userscontroller.e
 //delete user profile
 app.delete('/mentorapp/user/:slug/delete', currentuserMiddleware, userscontroller.deleteAccount)
 
+//follow a mentor 
+app.patch('/mentorapp/mentors/:mentorslug/connect', userscontroller.addMentor)
+
+//retrieve following list
+app.get('/mentorapp/user/:slug/following', currentuserMiddleware, userscontroller.followingList)
+
 //miscellaneous
 app.get('/updateuserschema', adhocusercontroller.addimage)
 

@@ -1,0 +1,10 @@
+body {
+    /* background-image: url("/Landing/joshua-ness--bEZ_OfWu3Y-unsplash.jpg");
+    background-size: cover; */
+    background-color: rgb(166,217,210);
+}
+
+#landing {
+    width: 500px;
+    height: auto;
+}

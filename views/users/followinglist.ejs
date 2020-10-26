@@ -1,0 +1,17 @@
+<%- include ('../partials/header') %>
+
+<h1>Following</h1>
+
+<!-- for every mentor in mentor list, show the mentor small img and the first name last name with an unfollow button -->
+<% mentorlist.forEach(mentorinfo=>{%>
+<p>
+    <img class="small-pic" src="<%=mentorinfo.img%>"> <%=mentorinfo.firstname%> <%=mentorinfo.lastname%>      
+</p>
+
+
+    <%})%>
+
+<%- include ('../partials/footer') %>
+
+</body>
+</html>

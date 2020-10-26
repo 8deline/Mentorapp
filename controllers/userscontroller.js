@@ -2,6 +2,8 @@ const uuid = require('uuid')
 const SHA256 = require('crypto-js/sha256')
 const _ = require('lodash')
 const userModel = require('../models/usermodel')
+const mentorModel = require('../models/mentormodel')
+const { isEqualWith, result } = require('lodash')
 
 
 
@@ -16,6 +18,7 @@ const userscontroller = {
         let firstname = req.body.firstname 
         let lastname = req.body.lastname
         let img = req.body.img
+        let description = req.body.description
         let username = req.body.userid
         let email = req.body.email
         let password = req.body.password
@@ -47,6 +50,7 @@ const userscontroller = {
                     img: img,
                     userid: username,
                     slug: _.kebabCase(firstname + '_'+ username),
+                    description: description,
                     email: email,
                     pwsalt: salt,
                     hashpw: hash,
@@ -189,7 +193,83 @@ const userscontroller = {
             res.redirect('/mentorapp/mentors')
         })
 
-    }
+    },
+
+    addMentor: (req,res)=>{
+        //check that the mentor exists in the mentor database
+        //retrieve the mentor's slug and then append into the current users' mentor list
+        let currentmentor = req.params.mentorslug
+        mentorModel.find({slug: currentmentor})
+        .then(result=>{
+            if (!result){
+                console.log('no such mentor found')
+                res.redirect('/mentorapp/mentors')
+                return
+            }
+
+            userModel.findOneAndUpdate({slug: req.session.user.slug},
+                {
+                            $push: {
+                                mentors: currentmentor
+                        }
+        }, {new:true})
+        .then( newresult=>{
+            if (!newresult) {
+                res.redirect('/mentorapp/mentors')
+                return
+            }
+            console.log('mentor followed')
+            req.session.user = newresult
+            res.redirect('/mentorapp/mentors/' + currentmentor)
+            
+            
+        })
+        .catch(err=>{res.redirect('/mentorapp/mentors')})
+    })
+
+    .catch(err=>{
+        console.log('the error is at the mentor side')
+        res.redirect('/mentorapp/mentors')
+    })
+},
+
+followingList: (req, res)=>{
+    let currentuser = req.params.slug
+    let mentorarray = []
+   userModel.findOne({slug: currentuser})
+    .then(result=>{
+        if (!result) {
+            res.redirect('/mentorapp/user/'+ currentuser)
+            return
+        }
+
+        result.mentors.forEach(mentor=>{
+            mentorModel.find({slug: mentor})
+            .then(mentorresult=>{
+                console.log(mentorresult)
+                mentorarray.push(
+                    {
+                        img: mentorresult[0].img,
+                        firstname: mentorresult[0].firstname, 
+                        lastname: mentorresult[0].lastname
+                    }
+                )
+                
+                
+                })
+
+    
+        })
+           
+    })    
+     
+
+   
+  
+    
+    .catch(err=> {console.log(err)})
+   
+}
 }
 
 module.exports = userscontroller;

@@ -17,7 +17,19 @@
 
 <p><%=currentmentordata.description%></p>
 
-<button type="button" class="btn btn-success">Ask me to mentor</button>
+<% if (user.mentors.includes(currentmentordata.slug)){%>
+    <button type="button" class="btn btn-success">Following</button>
+<%} else {%>
 
+<form method="POST" action="/mentorapp/mentors/<%=currentmentordata.slug%>/connect?_method=PATCH">
+    <button type="submit" class="btn btn-success follow-status">Ask me to mentor</button>
+</form>
+
+<%}%>
 
 <%- include ('../partials/footer') %>
+
+<script src= "/javascript/mentorprofile.js"></script>
+
+</body>
+</html>
