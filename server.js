@@ -74,10 +74,13 @@ app.patch('/mentorapp/user/:slug/edit', currentuserMiddleware, userscontroller.e
 app.delete('/mentorapp/user/:slug/delete', currentuserMiddleware, userscontroller.deleteAccount)
 
 //follow a mentor 
-app.patch('/mentorapp/mentors/:mentorslug/connect', userscontroller.addMentor)
+app.patch('/mentorapp/mentors/:mentorslug/connect', authenticateMiddleware, userscontroller.addMentor)
 
 //retrieve following list
 app.get('/mentorapp/user/:slug/following', currentuserMiddleware, userscontroller.followingList)
+
+//unfollow a mentor
+app.patch('/mentorapp/mentors/:mentorslug/unfollow', authenticateMiddleware, userscontroller.unfollow)
 
 //miscellaneous
 app.get('/updateuserschema', adhocusercontroller.addimage)

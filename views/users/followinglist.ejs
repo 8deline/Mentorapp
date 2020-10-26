@@ -1,5 +1,6 @@
 <%- include ('../partials/header') %>
 
+<%- include ('../partials/navbar') %>
 <h1>Following</h1>
 
 <!-- for every mentor in mentor list, show the mentor small img and the first name last name with an unfollow button -->
@@ -7,6 +8,10 @@
 <p>
     <img class="small-pic" src="<%=mentorinfo.img%>"> <%=mentorinfo.firstname%> <%=mentorinfo.lastname%>      
 </p>
+
+<form method="POST" action="/mentorapp/mentors/<%=mentorinfo.slug%>/unfollow?_method=PATCH">
+    <button type="submit" class="btn btn-primary">Unfollow</button>
+</form>
 
 
     <%})%>

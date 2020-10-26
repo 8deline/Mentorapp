@@ -243,23 +243,37 @@ followingList: (req, res)=>{
             return
         }
 
-        result.mentors.forEach(mentor=>{
-            mentorModel.find({slug: mentor})
-            .then(mentorresult=>{
-                console.log(mentorresult)
-                mentorarray.push(
-                    {
-                        img: mentorresult[0].img,
-                        firstname: mentorresult[0].firstname, 
-                        lastname: mentorresult[0].lastname
-                    }
-                )
+        // result.mentors.forEach(mentor=>{
+        //     mentorModel.find({slug: mentor})
+        //     .then(mentorresult=>{
+        //         console.log(mentorresult)
+        //         mentorarray.push(
+        //             {
+        //                 img: mentorresult[0].img,
+        //                 firstname: mentorresult[0].firstname, 
+        //                 lastname: mentorresult[0].lastname
+        //             }
+        //         )
                 
                 
-                })
-
-    
+        //         })
+        // })
+        const searches = result.mentors.map(mentor => {
+            return mentorModel.findOne({
+                slug: mentor
+            })
         })
+        // Promises.all executes all the promises given
+        Promise.all(searches)
+            .then(responses => {
+                res.render('users/followinglist',{
+                    mentorlist: responses
+                })
+                //gives you back an array of all the results of those calls
+            })
+            .catch(mentorSearchErr => console.log(`Error during mentor search`, mentorSearchErr))
+        
+    
            
     })    
      
@@ -269,6 +283,41 @@ followingList: (req, res)=>{
     
     .catch(err=> {console.log(err)})
    
+},
+
+unfollow: (req, res) =>{
+    let currentmentor = req.params.mentorslug
+    let currentuser = req.session.user
+    mentorModel.find({slug: currentmentor})
+        .then(result=>{
+            if (!result){
+                console.log('no such mentor found')
+                res.redirect('/mentorapp/mentors')
+                return
+            }
+
+            userModel.findOneAndUpdate({slug: currentuser.slug},
+                {
+                            $pull: {
+                                mentors: currentmentor
+                        }
+        }, {new:true})
+        .then( newresult=>{
+            if (!newresult) {
+                res.redirect('/mentorapp/mentors')
+                return
+            }
+            req.session.user = newresult
+            res.redirect('/mentorapp/user/' + newresult.slug + '/following')
+            
+            
+        })
+        .catch(err=>{res.redirect('/mentorapp/mentors')})
+    })
+
+    .catch(err=>{
+        res.redirect('/mentorapp/mentors')
+    })
 }
 }
 

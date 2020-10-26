@@ -6,7 +6,36 @@
 
 <%- include ('../partials/navbar') %>
 
-<img id="landing" src="/Landing/joshua-ness--bEZ_OfWu3Y-unsplash.jpg">
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <img id="landing" src="/Landing/joshua-ness--bEZ_OfWu3Y-unsplash.jpg">
+        </div>
+
+        <div class="col-6">
+            <div class="form">
+                <h1>User Login</h1>
+
+            <form method="POST" action="/mentorapp/user/login">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" class="login-email" id="email" name="email" />
+                </div>
+        
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" class="login-password" id="password" name="password" />
+                </div>
+        
+                <button type="submit" class="btn btn-primary login" id="login">Submit</button>
+            </form>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
 
 
 <%- include ('../partials/footer') %>
