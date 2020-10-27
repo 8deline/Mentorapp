@@ -1,14 +1,43 @@
 <%- include ('../partials/header') %>
+<link rel="stylesheet" href="/css/profile.css">
+</head>
 
-<img src="<%=currentuserprofile.img%>" class="profile-pic">
+<%- include ('../partials/navbar') %>
+
+<div class="container profile-section">
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <img src="<%=currentuserprofile.img%>" class="profilepage-pic">
+                
+            </div>
+            
+        </div>
+
+        <div class="col-6">
+            <div class="profile-name">
+                <h1 class="profile-name small"><%=currentuserprofile.firstname%> <%=currentuserprofile.lastname%> </h1>
+            </div>
+            
+            <a class="btn btn-special-light-green" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a>
+            <%if (currentuserprofile.description){%>
+            <h1 class="small bio-title">Bio:</h1>
+            <p class="small">
+                
+                    <%=currentuserprofile.description%>
+               
+            </p>
+            <%}%>
+        </div>
+    </div>
+</div>
+
 
 <h1><%=currentuserprofile.firstname%></h1>
 
 <h1><%=currentuserprofile.lastname%></h1>
 
-<%if (currentuserprofile.description){%>
-    <p><%=currentuserprofile.description%></p>
-<%}%>
+
 
 <p><%=currentuserprofile.mentors.length%>  mentors</p>
 
@@ -19,9 +48,9 @@
 
 
 <!-- delete route -->
-<form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/delete?_method=DELETE">
+<!-- <form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/delete?_method=DELETE">
     <button type="submit" class="btn btn-primary">Delete account</button>
-</form>
+</form> -->
 <!-- -->
 
 <%- include ('../partials/footer') %>

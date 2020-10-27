@@ -5,7 +5,31 @@ body {
 }
 
 #landing {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%;
+}
+
+.login-form {
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    border-radius: 5%;
+}
+
+.landing-component {
+    position: relative;
+    top: 50px;
+}
+
+.mentorapp {
+    color: white;
+}
+
+.brand-slogan {
+    color: white;
+    font-family: 'Staatliches', cursive;
+    font-size: 30px;
+    position: relative;
+    bottom: 50px;
 }

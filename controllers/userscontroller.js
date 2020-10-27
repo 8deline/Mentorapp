@@ -33,7 +33,7 @@ const userscontroller = {
             userModel.findOne({email: email})
             .then (newresult=>{
                 if (newresult) {
-                    res.redirect('/mentorapp/user/login')
+                    res.redirect('/mentorapp')
                     return
                 }
                 
@@ -71,30 +71,30 @@ const userscontroller = {
             
         },
     
-
-    showLoginForm: (req, res)=>{
-        res.render('users/login')
-    },
+//Not IN USE ANYMORE
+    // showLoginForm: (req, res)=>{
+    //     res.render('users/login')
+    // },
 
    login: (req, res)=>{
         //check if email is in the database if not in database, redirect back to login page again
         let email= req.body.email
         let password = req.body.password
         if(email === "" || email === undefined || password===""|| password === undefined){
-            res.redirect('/mentorapp/user/login')
+            res.redirect('/mentorapp/')
             console.log('first stage')
             return
         }
         userModel.findOne({email: email})
         .then(result=>{
             if (!result) {
-                res.redirect('/mentorapp/user/login')
+                res.redirect('/mentorapp')
                 console.log('no such user exist')
                 return
         }
         //check if password hash match
         if (SHA256(result.pwsalt+ password).toString() !== result.hashpw){
-            res.redirect('/mentorapp/user/login')
+            res.redirect('/mentorapp')
             console.log('password dontmatch')
             return
         }
@@ -105,7 +105,7 @@ const userscontroller = {
         })
         .catch(err=> {
             console.log(err)
-            res.redirect('/mentorapp/users/login')})
+            res.redirect('/mentorapp')})
     
 
     },

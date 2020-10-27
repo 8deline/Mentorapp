@@ -32,10 +32,13 @@ app.use(express.urlencoded({
 
   app.use(methodOverride('_method'))
 
+
 //landing page
 app.get('/mentorapp', newGuestMiddleware, (req, res)=>{
   res.render('users/landing')
 })
+
+//Mentors
 
 //index route
 app.get('/mentorapp/mentors', authenticateMiddleware, mentorscontroller.allMentors )
@@ -51,8 +54,8 @@ app.get('/mentorapp/user/register', newGuestMiddleware, userscontroller.showRegi
 //user register
 app.post('/mentorapp/user/register', newGuestMiddleware, userscontroller.register)
 
-//user login form
-app.get('/mentorapp/user/login',newGuestMiddleware, userscontroller.showLoginForm)
+//user login form NOT IN USE anymore
+// app.get('/mentorapp/user/login',newGuestMiddleware, userscontroller.showLoginForm)
 
 //user login
 app.post('/mentorapp/user/login',newGuestMiddleware, userscontroller.login)

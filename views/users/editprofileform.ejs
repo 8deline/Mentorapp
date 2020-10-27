@@ -1,7 +1,18 @@
-<%- include ('../partials/header') %>
-<div class="container">
 
-<img src="<%=currentuserprofile.img%>" class="profile-pic">
+<%- include ('../partials/header') %>
+
+<link rel="stylesheet" href="/css/editprofile.css">
+
+</head>
+
+<%- include ('../partials/navbar') %>
+
+<div class="container edit-profile-form">
+  <h1>Edit profile</h1>
+<div class="edit-pic">
+  <img src="<%=currentuserprofile.img%>" class="profile-pic">
+</div>
+
 
 <form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/edit?_method=PATCH"/edit">
     <div class="form-group">
@@ -38,6 +49,9 @@
     <button type="submit" class="btn btn-primary">Edit profile</button>
 
   </form>
+  <form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/delete?_method=DELETE">
+    <button type="submit" class="btn btn-link delete">Delete account</button>
+</form>
 
 </div>
 

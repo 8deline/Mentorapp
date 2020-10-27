@@ -1,0 +1,20 @@
+.edit-profile-form {
+    margin: 0 auto;
+    width: 500px;
+    border: 1px solid gainsboro;
+}
+
+h1 {
+    text-align: center;
+}
+
+.edit-pic {
+    margin: 0 auto;
+    position: relative;
+    left: 180px;
+}
+
+.delete {
+    position: relative;
+    right: 12px;
+}
