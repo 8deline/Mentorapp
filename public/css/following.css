@@ -1,0 +1,23 @@
+.following-list {
+    margin: 0 auto;
+    width: 500px;
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 2%;
+}
+
+.folowing-title {
+    text-align: center;
+}
+
+.following-mentor{
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+}
+
+.mentor-name {
+    display: inline-block;
+    
+}
+
+.button {
+    margin: 6px;
+}

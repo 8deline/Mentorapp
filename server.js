@@ -6,6 +6,7 @@ require('dotenv').config()
 const session= require('express-session')
 const mentorscontroller = require('./controllers/mentorscontroller')
 const userscontroller=require('./controllers/userscontroller')
+const newsfeedcontroller=require('./controllers/newsfeedcontroller')
 const adhocusercontroller = require('./controllers/adhocuser')
 const _ = require('lodash')
 const methodOverride = require('method-override')
@@ -84,6 +85,15 @@ app.get('/mentorapp/user/:slug/following', currentuserMiddleware, userscontrolle
 
 //unfollow a mentor
 app.patch('/mentorapp/mentors/:mentorslug/unfollow', authenticateMiddleware, userscontroller.unfollow)
+
+// Posting on news feed
+//post form
+app.get('/mentorapp/user/:slug/newpost', currentuserMiddleware, newsfeedcontroller.newsfeedform)
+
+// creating a new post
+app.post('/mentorapp/user/:slug/newpost', currentuserMiddleware, newsfeedcontroller.createPost)
+
+
 
 //miscellaneous
 app.get('/updateuserschema', adhocusercontroller.addimage)

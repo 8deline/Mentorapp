@@ -5,46 +5,54 @@
 <%- include ('../partials/navbar') %>
 
 <div class="container profile-section">
-    <div class="row">
-        <div class="col-6">
-            <div class="row">
-                <img src="<%=currentuserprofile.img%>" class="profilepage-pic">
-                
-            </div>
+    <div class="row bio-section">
+        <div class="col-3">
             
+                <img src="<%=currentuserprofile.img%>" class="profilepage-pic">  
         </div>
 
-        <div class="col-6">
+        <div class="col-9">
             <div class="profile-name">
                 <h1 class="profile-name small"><%=currentuserprofile.firstname%> <%=currentuserprofile.lastname%> </h1>
             </div>
             
             <a class="btn btn-special-light-green" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a>
+            <p class="bio-title following"><a class="following" href="/mentorapp/user/<%=currentuserprofile.slug%>/following">Following: <%=currentuserprofile.mentors.length%>  mentors</a> </p>
             <%if (currentuserprofile.description){%>
             <h1 class="small bio-title">Bio:</h1>
-            <p class="small">
+            <p class="bio-small">
                 
                     <%=currentuserprofile.description%>
                
             </p>
-            <%}%>
+        <%}else {%>
+            <p class="bio-title"><a href="/mentorapp/user/<%=currentuserprofile.slug%>/edit">Add bio</a></p>
+            <%}%>   
+            
+            <a class="btn btn-special-light-green" href="/mentorapp/user/<%=currentuserprofile.slug%>/newpost" role="button">New post</a>
         </div>
     </div>
 </div>
 
+<%currentuserpost.forEach(post=>{%>
 
-<h1><%=currentuserprofile.firstname%></h1>
+<p><%=post.comment%></p>
+
+<%})%>
+
+
+<!-- <h1><%=currentuserprofile.firstname%></h1>
 
 <h1><%=currentuserprofile.lastname%></h1>
 
 
 
-<p><%=currentuserprofile.mentors.length%>  mentors</p>
+
 
 <h1>Following</h1>
 <a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/following" role="button">Following</a>
 
-<a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a>
+<a class="btn btn-primary" href="/mentorapp/user/<%=currentuserprofile.slug%>/edit" role="button">Edit profile</a> -->
 
 
 <!-- delete route -->

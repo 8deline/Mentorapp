@@ -3,6 +3,7 @@ const SHA256 = require('crypto-js/sha256')
 const _ = require('lodash')
 const userModel = require('../models/usermodel')
 const mentorModel = require('../models/mentormodel')
+const postModel = require('../models/postmodel')
 const { isEqualWith, result } = require('lodash')
 
 
@@ -116,20 +117,46 @@ const userscontroller = {
     },
 
     profilepage: (req, res) => {
-       
         let currentuser = req.params.slug
         userModel.findOne({slug: currentuser})
-        .then(result=>{
-            res.render('users/profilepage',{
-                currentuserprofile: result
-            })
-            })
-        
-        .catch(err=> {
-            console.log(err)
-            res.redirect('/mentorapp/mentors')})
+            .then(result => {
+                if (! result) {
+                    res.redirect('/mentorapp/mentors')
+                    return
+                }
 
+                // find associated ratings here
+                postModel.find(
+                    {
+                        user_slug: result.slug
+                    },
+                    {},
+                    
+                    {
+                        sort: {
+                            created_at: -1
+                        }
+                    }
+                )
+                    .then(postResults => {
+                        
+                        res.render('users/profilepage',{
+                            currentuserprofile: result,
+                            currentuserpost: postResults
+                        })
+                        })
+                    
+                    .catch(err => {
+                        console.log(err)
+                        res.redirect('/mentorapp/mentors')
+                    })
+            })
+
+            .catch(err => {
+                res.send(err)
+            })
     },
+
 
     editProfileForm:  (req, res) => {
        

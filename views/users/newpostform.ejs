@@ -1,0 +1,43 @@
+<%- include ('../partials/header') %>
+
+<link rel="stylesheet" href="/css/following.css">
+
+
+</head>
+
+<%- include ('../partials/navbar') %>
+
+<div class="container following-list">
+    <h1 class="folowing-title">Create post</h1>
+
+
+         <!-- for every mentor in mentor list, show the mentor small img and the first name last name with an unfollow button -->
+         
+
+    <div class="row">
+        <div class="col">
+           
+            <form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/newpost">
+                <div class="form-group">
+                    <textarea class="form-control" id="post" name="post" placeholder="What are you feeling today?" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-special-green btn-block mentor-name">Create post</button>
+            </form>
+            
+          
+           
+           
+            
+            
+               
+        </div>
+    </div>
+
+   
+</div>
+
+
+<%- include ('../partials/footer') %>
+
+</body>
+</html>

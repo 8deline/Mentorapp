@@ -1,20 +1,41 @@
 <%- include ('../partials/header') %>
 
+<link rel="stylesheet" href="/css/following.css">
+
+
+</head>
+
 <%- include ('../partials/navbar') %>
-<h1>Following</h1>
 
-<!-- for every mentor in mentor list, show the mentor small img and the first name last name with an unfollow button -->
-<% mentorlist.forEach(mentorinfo=>{%>
-<p>
-    <img class="small-pic" src="<%=mentorinfo.img%>"> <%=mentorinfo.firstname%> <%=mentorinfo.lastname%>      
-</p>
+<div class="container following-list">
+    <h1 class="folowing-title">Following</h1>
+         <!-- for every mentor in mentor list, show the mentor small img and the first name last name with an unfollow button -->
+         <% mentorlist.forEach(mentorinfo=>{%>
 
-<form method="POST" action="/mentorapp/mentors/<%=mentorinfo.slug%>/unfollow?_method=PATCH">
-    <button type="submit" class="btn btn-primary">Unfollow</button>
-</form>
-
-
+    <div class="row">
+        <div class="col following-mentor d-flex justify-content-between">
+           
+            <div class="mentor-name">
+                <p class="mentor-name">
+                    <a href="/mentorapp/mentors/<%=mentorinfo.slug%>"><img class="small-pic" src="<%=mentorinfo.img%>"> <%=mentorinfo.firstname%> <%=mentorinfo.lastname%></a>
+                </p>
+            </div>
+          
+            <div class="mentor-name button">
+                <form method="POST" action="/mentorapp/mentors/<%=mentorinfo.slug%>/unfollow?_method=PATCH">
+                    <button type="submit" class="btn btn-special-green mentor-name">Unfollow</button>
+                </form>
+            </div>
+           
+            
+            
+               
+        </div>
+    </div>
     <%})%>
+   
+</div>
+
 
 <%- include ('../partials/footer') %>
 

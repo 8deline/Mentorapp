@@ -18,3 +18,9 @@ h1 {
     position: relative;
     right: 12px;
 }
+
+.img-border{
+    border: 2px solid rgb(62, 170, 170);
+}
+
+
