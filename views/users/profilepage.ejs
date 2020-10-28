@@ -32,13 +32,38 @@
             <a class="btn btn-special-light-green" href="/mentorapp/user/<%=currentuserprofile.slug%>/newpost" role="button">New post</a>
         </div>
     </div>
+
+    <h1 class="title">Posts</h1>
+
+    <%currentuserpost.forEach(post=>{%>
+
+        <div class="row justify-content-center">
+          <div class="post d-flex align-items-start flex-column bd-highlight mb-3">
+
+              <div class="d-flex align-items-start flex-column bd-highlight mb-3">
+                <p><%=post.comment%></p>
+              </div>
+            
+
+              <div class="mt-auto p-2 bd-highlight">
+                <small><%=post.created_at.toDateString()%></small>
+              </div>
+                
+            </div>
+          
+            
+              
+           
+
+        </div>
+
+      
+        
+        <%})%>
 </div>
 
-<%currentuserpost.forEach(post=>{%>
 
-<p><%=post.comment%></p>
 
-<%})%>
 
 
 <!-- <h1><%=currentuserprofile.firstname%></h1>

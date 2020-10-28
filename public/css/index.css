@@ -1,0 +1,61 @@
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+#carouselhomepage {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.carousel-item {
+    width: 1200px;
+    height: auto;
+}
+
+.brand-slogan {
+    color: rgb(62,170, 170);
+}
+
+.connect-with-our-mentors {
+    margin: 30px;
+    width: 1200px;
+    background-color: rgb(62,170, 170);
+    color: white;
+    border-radius: 5px 5px 0px 0px;;
+    padding: 5px;
+}
+
+.mentors {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 16px;
+}
+
+.mentor{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.mentor-profilelink{
+    padding: 10px;
+    margin: 5px;
+    
+}
+
+.mentor-name{
+    color: black;
+}
+
+
+.interest .interest-tags li {
+    list-style-type: none;
+}
+
+.interest-tags {
+    display: inline-block;
+    background-color: rgb(166,217,210);
+    border-radius: 16px;
+    padding: 10px;
+}

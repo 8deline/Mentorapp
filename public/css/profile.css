@@ -46,3 +46,19 @@
    
     display: inline-block
 }
+
+.title {
+    text-align: center;
+}
+
+.post {
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0, 0.1);
+    /* border-bottom: 1px solid  rgba(0,0,0, 0.7) ; */
+    border-radius: 5px 5px 0px 0px;
+    margin: 15px;
+}
+
+
