@@ -93,7 +93,8 @@ app.get('/mentorapp/user/:slug/newpost', currentuserMiddleware, newsfeedcontroll
 // creating a new post
 app.post('/mentorapp/user/:slug/newpost', currentuserMiddleware, newsfeedcontroller.createPost)
 
-
+//delete a new  post
+app.delete('/mentorapp/user/:slug/:postid/delete', authenticateMiddleware, newsfeedcontroller.deletePost)
 
 //miscellaneous
 app.get('/updateuserschema', adhocusercontroller.addimage)

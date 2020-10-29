@@ -52,6 +52,26 @@ const newsfeedcontroller = {
             })
     },
 
+    deletePost: (req, res)=>{
+        let postid = req.params.postid
+        let currentuser = req.params.slug
+        
+    
+        postModel.findOneAndDelete({_id: postid})
+        .then(result=>{
+            if (!result){
+                res.redirect('/mentorapp/users/'+ currentuser)
+                return
+            }
+            console.log('what is the er ror')
+            res.redirect('/mentorapp/user/' + currentuser)
+            
+        })  
+        .catch(err=>{
+            res.redirect('/mentorapp/users/' + currentuser)
+        })
+    }
+
 
 }
 

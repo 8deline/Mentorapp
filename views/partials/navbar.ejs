@@ -42,7 +42,11 @@
           
           </ul>
           <form method="GET" action="/mentorapp/user/<%=user.slug%>">
+            <%if (user.img){%>
             <button type="submit" class="btn nav-link" style="border: 0;"><img class="small-pic" src="<%=user.img%>"><%=user.userid%></button>
+            <%} else{%>
+              <button type="submit" class="btn nav-link" style="border: 0;"><img class="small-pic" src="/users/default-profile-icon-4.jpg"><%=user.userid%></button>
+            <%}%>
           </form>
 
           <form method="POST" action="/mentorapp/user/logout">

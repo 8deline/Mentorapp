@@ -1,31 +1,106 @@
 <%- include ('../partials/header') %>
 
-<img class="profile-pic" src="<%=currentmentordata.img%>">
+<link rel="stylesheet" href="/css/show.css">
 
-<h1><%=currentmentordata.firstname%> <%=currentmentordata.lastname%></h1>
-<p><%=currentmentordata.designation%> at <%=currentmentordata.company%></p>
-<p><%=currentmentordata.yearsOfExperience%> years of experience in <%=currentmentordata.industry%> industry</p>
+</head>
 
-<h1>I'm a mentor</h1>
+<%- include ('../partials/navbar') %>
 
-<ul>
-    <%currentmentordata.intention.forEach(intention=>{%>
-        <li><%=intention%></li>
+<div class="container profile-section">
+    <div class="row bio-section">
+        <div class="col-3">
+            <img class="profilepage-pic" src="<%=currentmentordata.img%>">
+        </div>
 
-    <%})%>
-</ul>
+        <div class="col-9">
+            <h1><%=currentmentordata.firstname%> <%=currentmentordata.lastname%></h1>
+            <p><%=currentmentordata.designation%> at <%=currentmentordata.company%></p>
+            <p><%=currentmentordata.yearsOfExperience%> years of experience in <%=currentmentordata.industry%> industry</p>
+            <% if (user.mentors.includes(currentmentordata.slug)){%>
+                <button type="button" class="btn btn-special-green">Following</button>
+            <%} else {%>
+            
+            <form method="POST" action="/mentorapp/mentors/<%=currentmentordata.slug%>/connect?_method=PATCH">
+                <button type="submit" class="btn btn-special-green follow-status">Ask me to mentor</button>
+            </form>
+            
+            <%}%>
+        </div>
+    </div>
+    <div class="row about-section">
+        <h3>I'm a mentor</h3>
+    </div>
 
-<p><%=currentmentordata.description%></p>
+    <div class="intention-section">
+        <ul class="intention">
+            <%currentmentordata.intention.forEach(intention=>{%>
+                <li><%=intention%></li>
+        
+            <%})%>
+        </ul>
+    </div>
 
-<% if (user.mentors.includes(currentmentordata.slug)){%>
-    <button type="button" class="btn btn-success">Following</button>
-<%} else {%>
+    <div class="mentor-about-me">
+        <p><%=currentmentordata.description%></p>
+    </div>
 
-<form method="POST" action="/mentorapp/mentors/<%=currentmentordata.slug%>/connect?_method=PATCH">
-    <button type="submit" class="btn btn-success follow-status">Ask me to mentor</button>
-</form>
+    <div class="row about-section">
+        <h3>Articles</h3>
+    </div>
 
-<%}%>
+    <div class="">
+        <div class="article-post">
+            <img class="small-pic" src="<%=currentmentordata.img%>"> <span class="mentor-article-name"><%=currentmentordata.firstname%> <%=currentmentordata.lastname%></span>
+            
+            <span class="article-read">1 day ago</span>
+
+            <div class="article-post-section">
+                <h4 class="article-title">Why mentorship is so important for diversity and inclusion in the workplace</h4>
+
+                <img src="/mentorarticles/ali-yahya-ytNFYf4d_30-unsplash (1).jpg"> 
+
+                <div class="article-preview">
+                    <p><a href="#">It’s all about connections. Mentorship is a great way to learn more about the industry, to learn about how to advance your career... (Forbes)</a> </p>
+                </div>
+                
+            </div>
+         
+        </div>
+
+        <div class="article-post">
+            <img class="small-pic" src="<%=currentmentordata.img%>"> <span class="mentor-article-name"><%=currentmentordata.firstname%> <%=currentmentordata.lastname%></span>
+            
+            <span class="article-read">23 October 2020</span>
+
+            <div class="article-post-section">
+                <h4 class="article-title">Breaking the glass ceiling in tech</h4>
+
+                <img src="/mentorarticles/christopher-gower-m_HRfLhgABo-unsplash.jpg"> 
+
+                <div class="article-preview">
+                    <p><a href="#">Benevolent sexism: how "friendly" remarks can belittle women in the workplace...</a> </p>
+                </div>
+                
+            </div>
+         
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <%- include ('../partials/footer') %>
 

@@ -7,8 +7,13 @@
 <div class="container profile-section">
     <div class="row bio-section">
         <div class="col-3">
-            
+            <%if (currentuserprofile.img) {%>
                 <img src="<%=currentuserprofile.img%>" class="profilepage-pic">  
+                <%} else {%>
+
+                    <img src="/users/default-profile-icon-4.jpg" class="profilepage-pic">  
+                    <%}%>
+
         </div>
 
         <div class="col-9">
@@ -51,6 +56,9 @@
                 
             </div>
           
+            <form method="POST" action="/mentorapp/user/<%=currentuserprofile.slug%>/<%=post._id%>/delete?_method=DELETE">
+                <button type="submit" class="btn btn-special-light-green mb-2">Delete post</button> 
+            </form>
             
               
            
