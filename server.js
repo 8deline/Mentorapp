@@ -38,6 +38,10 @@ app.use(express.urlencoded({
   app.use(methodOverride('_method'))
 
 
+  // to just set a route '/' that would redirect back to /mentorapp
+  app.get('/', (req,res)=>{
+    res.redirect('/mentorapp')
+  })
 //landing page
 app.get('/mentorapp', newGuestMiddleware, (req, res)=>{
   res.render('users/landing')
