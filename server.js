@@ -11,8 +11,12 @@ const adhocusercontroller = require('./controllers/adhocuser')
 const _ = require('lodash')
 const methodOverride = require('method-override')
 
+//PORT
+// Allow use of Heroku's port or your own local port, depending on the environment
+const PORT = process.env.PORT || 5000;
+
 //connection string of mongoose
-const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
+const mongoURI = process.env.MONGODB_URI || `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
 mongoose.set('useFindAndModify', false)
 
 app.use(session({
@@ -102,10 +106,14 @@ app.get('/updateuserschema', adhocusercontroller.addimage)
 //setup connection to mongo
 mongoose.connect( mongoURI, { useNewUrlParser: true, useUnifiedTopology: true } )
 .then(result=>{console.log('successfully connected')
-app.listen(5000)
+app.listen(PORT)
 })
+
     
 .catch(err=> console.log(err))
+
+// open the connection to mongo
+mongoose.connection.on('open' , ()=>{});
 
 function newGuestMiddleware(req, res, next) {
   if(req.session && req.session.user){
